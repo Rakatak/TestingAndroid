@@ -1,0 +1,10 @@
+eclipse.preferences.version=1
+encoding//src/main/java=UTF-8
+encoding//src/test/java=UTF-8
+encoding//src/test/java/com/thalia/xca/aos/BasicTest.java=UTF-8
+encoding//src/test/java/com/thalia/xca/aos/BookTest.java=UTF-8
+encoding//src/test/java/com/thalia/xca/aos/InspirationTest.java=UTF-8
+encoding//src/test/java/com/thalia/xca/aos/LoginTest.java=UTF-8
+encoding//src/test/java/com/thalia/xca/aos/SearchTest.java=UTF-8
+encoding//src/test/java/com/thalia/xca/aos/ShopTest.java=UTF-8
+encoding//src/test/java/com/thalia/xca/aos/StoreFinderTest.java=UTF-8
