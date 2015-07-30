@@ -26,7 +26,9 @@ public class AndroidCapabilities {
     
 	public AndroidDriver<MobileElement> setCap() throws InterruptedException, IOException{
 		
-		String computername = InetAddress.getLocalHost().getHostName();
+//		String computername = InetAddress.getLocalHost().getHostName();
+		String computername = System.getProperty("user.name");
+		System.out.println(computername);
 		
 		AndroidDriver<MobileElement> wd = null;
         
@@ -34,7 +36,7 @@ public class AndroidCapabilities {
         
 		capabilities.setCapability("deviceName", "whatever");
 
-    	if (computername.equals("Reserve2-iMac-2.local") || computername.equals("Reserve2-iMac.local") || computername.equals("Andreas-MacBook-Pro")){
+    	if (computername.equals("Rakatak")){
 
     		capabilities.setCapability("app",AppiumSetup.appPath);
     		wd = new AndroidDriver<MobileElement>(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
@@ -53,7 +55,8 @@ public class AndroidCapabilities {
             String port = System.getProperty("PORT");
             String integration = System.getProperty("INTEGRATION");
             
-    		String jenkinsPath = currentDir + "/xca/thalia/build/outputs/apk/thalia-" + mode + ".apk";
+//    		String jenkinsPath = currentDir + "/xca/thalia/build/outputs/apk/thalia-" + mode + ".apk";
+    		String jenkinsPath = AppiumSetup.appPath;
 
     		capabilities.setCapability("app", jenkinsPath);
             wd = new AndroidDriver<MobileElement>(new URL("http://0.0.0.0:" + port + "/wd/hub"), capabilities);
