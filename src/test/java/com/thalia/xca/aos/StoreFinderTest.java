@@ -13,6 +13,7 @@ import org.openqa.selenium.NoSuchElementException;
 import com.thalia.xca.aos.prop.AbstractExcAction;
 import com.thalia.xca.aos.prop.AndroidCapabilities;
 import com.thalia.xca.aos.prop.AppiumSetup;
+import com.thalia.xca.aos.prop.UIElements;
 
 public class StoreFinderTest {
 	
@@ -43,6 +44,9 @@ public class StoreFinderTest {
 		    	element = wd.findElementById(eName);
 		    	element.click();
 		    	Thread.sleep(10000);
+		    	
+		    	eName = UIElements.actionBarTitleClass;
+		    	element = wd.findElementByClassName(eName);
 		    	
 		    	eName = "eu.thalia.app:id/storeIcon";
 		    	List<MobileElement> temp = wd.findElementsById(eName);
@@ -103,7 +107,9 @@ public class StoreFinderTest {
 		    	
 				wd.swipe(200, (int)(aCap.screenHeight*0.8), 200, (int)(aCap.screenHeight*0.1), 500);
 		    	
+				wd.getPageSource();
 			    eName = "eu.thalia.app:id/showMoreStoresLabel";
+//				wd.scrollTo(eName);
 		    	element = wd.findElementById(eName);
 		    	element.click();
 		    	Thread.sleep(4000);
@@ -191,8 +197,8 @@ public class StoreFinderTest {
 		    	element.click();
 		    	Thread.sleep(2000);
 		    	
-		    	eName = "android:id/up";
-				element = wd.findElementById(eName);
+		    	eName = UIElements.upName;
+				element = wd.findElementByName(eName);
 		    	element.click();
 		    	Thread.sleep(3000);
 		    	
@@ -209,6 +215,9 @@ public class StoreFinderTest {
 		    	element.click();
 				Thread.sleep(3000);
 		
+				aCap.retry(wd);
+		        Thread.sleep(2000);
+		        
 				eName = "eu.thalia.app:id/priceLabel";
 				element = wd.findElementById(eName);
 		    	element.click();

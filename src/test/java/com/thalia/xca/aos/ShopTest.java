@@ -16,6 +16,7 @@ import org.openqa.selenium.NoSuchElementException;
 
 import com.thalia.xca.aos.prop.AbstractExcAction;
 import com.thalia.xca.aos.prop.AndroidCapabilities;
+import com.thalia.xca.aos.prop.UIElements;
 
 public class ShopTest {
 	
@@ -51,8 +52,12 @@ public class ShopTest {
 				String check = element.getAttribute("name");
 				element.click();
 				
-				eName = "android:id/action_bar_title";
-				String result = wd.findElementById(eName).getAttribute("name");
+				aCap.retry(wd);
+		        Thread.sleep(2000);
+		        
+		        eName = UIElements.actionBarTitleClass;
+				element = wd.findElementsByClassName(eName).get(0);
+				String result = element.getAttribute("name");
 		        
 				assertTrue("The category: (" + check + ") didn't change the view. Result : " + result, result.equals(check));
 			}
@@ -91,6 +96,9 @@ public class ShopTest {
 				element = wd.findElementByName(eName);
 				element.click();
 		        Thread.sleep(4000);
+		        
+		        aCap.retry(wd);
+		        Thread.sleep(2000);
 		        
 		        eName = "Verfeinern";
 				element = wd.findElementByName(eName);
@@ -137,6 +145,9 @@ public class ShopTest {
 				element.click();
 		    	Thread.sleep(3000);
 				
+		    	aCap.retry(wd);
+		        Thread.sleep(2000);
+		        
 				eName = "Verfeinern";
 				element = wd.findElementByName(eName);
 				element.click();
@@ -173,11 +184,16 @@ public class ShopTest {
 				element.click();
 				Thread.sleep(3000);
 				
+				aCap.retry(wd);
+		        Thread.sleep(2000);
+		        
 				eName = "Verfeinern";
 				element = wd.findElementByName(eName);
 				element.click();
 				Thread.sleep(3000);
 				
+				wd.getPageSource();
+	        	wd.swipe(10, 20, 10, 20, 100);
 				eName = "FILTER";
 				element = wd.findElementByName(eName);
 				element.click();
@@ -197,7 +213,9 @@ public class ShopTest {
 				Double filter = Double.parseDouble(m.group());
 				System.out.println(filter);
 				element.click();
-				Thread.sleep(6000);
+				Thread.sleep(5000);
+				aCap.retry(wd);
+				Thread.sleep(5000);
 				
 				List<MobileElement> list = new ArrayList<MobileElement>();
 				
@@ -205,10 +223,18 @@ public class ShopTest {
 				list = wd.findElementsById("eu.thalia.app:id/priceLabel");
 				
 				for (int i = 0; i < list.size(); i++){
+					
 					eName = "Prize Element Nr." + i;
 					element =  list.get(i);
-					int check = Integer.parseInt(element.getAttribute("name").substring(0, 1));
-					if (check < filter){
+					
+					String tmp = element.getAttribute("name");
+					int tmpLength = tmp.length();
+					tmp = tmp.substring(0, tmpLength -2);
+					tmp = tmp.replace(",", ".");
+					System.out.println(tmp);
+					
+					Double check = Double.parseDouble(tmp);
+					if (check <= filter){
 						checker++;
 
 					}
@@ -243,6 +269,9 @@ public class ShopTest {
 				element.click();
 				Thread.sleep(4000);
 				
+				aCap.retry(wd);
+		        Thread.sleep(2000);
+		        
 				eName = "Verfeinern";
 				element = wd.findElementByName(eName);
 				element.click();

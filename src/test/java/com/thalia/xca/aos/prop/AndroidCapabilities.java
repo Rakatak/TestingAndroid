@@ -17,18 +17,18 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 public class AndroidCapabilities {
 	
     public String username;
-    public String password;	
+    public String password;
+    public String mandant;
     public double screenWidth;
     public double screenHeight;
+    
     
     public AndroidCapabilities (){
     }
     
 	public AndroidDriver<MobileElement> setCap() throws InterruptedException, IOException{
 		
-//		String computername = InetAddress.getLocalHost().getHostName();
-		String computername = System.getProperty("user.name");
-		System.out.println(computername);
+		String computername = InetAddress.getLocalHost().getHostName();
 		
 		AndroidDriver<MobileElement> wd = null;
         
@@ -36,36 +36,34 @@ public class AndroidCapabilities {
         
 		capabilities.setCapability("deviceName", "whatever");
 
-    	if (computername.equals("Rakatak")){
+    	if (computername.equals("Reserve2-iMac-2.local") || computername.equals("Reserve2-iMac.local") || computername.equals("Andreas-MacBook-Pro")){
 
     		capabilities.setCapability("app",AppiumSetup.appPath);
     		wd = new AndroidDriver<MobileElement>(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
             wd.manage().timeouts().implicitlyWait(AppiumSetup.timeOutfirst, TimeUnit.SECONDS);
         	Thread.sleep(5000);
             countrySelection("DE", wd);
-
-            username = "xcabasicde@thqa.de";
-    	    password = "hummel123";
             
     	} else {
+    		
+    		mandant = "DE";
     		
     		File currentDir = new File(System.getProperty("user.dir"));
     		
     		String mode = System.getProperty("MODE");
             String port = System.getProperty("PORT");
             String integration = System.getProperty("INTEGRATION");
+            String localeCode = System.getProperty("MANDANT");
             
-//    		String jenkinsPath = currentDir + "/xca/thalia/build/outputs/apk/thalia-" + mode + ".apk";
-    		String jenkinsPath = AppiumSetup.appPath;
+            AppiumSetup.versionNr = System.getProperty("VERSION");
+
+    		String jenkinsPath = currentDir + "/xca/thalia/build/outputs/apk/thalia-" + mode + ".apk";
 
     		capabilities.setCapability("app", jenkinsPath);
             wd = new AndroidDriver<MobileElement>(new URL("http://0.0.0.0:" + port + "/wd/hub"), capabilities);
             wd.manage().timeouts().implicitlyWait(AppiumSetup.timeOutfirst, TimeUnit.SECONDS);
         	Thread.sleep(5000);
-            countrySelection("DE", wd);
-            
-            username = "xcabasicde@thqa.de";
-    	    password = "hummel123";
+            countrySelection(localeCode, wd);
             
             if (integration.equals("yes")){
             	
@@ -146,7 +144,7 @@ public class AndroidCapabilities {
 			element.click();
 			Thread.sleep(1000);
 			
-			element = wd.findElementById("android:id/up");
+			element = wd.findElementByName(UIElements.upName);
 	    	element.click();
 	    	Thread.sleep(1000);
 	    	
@@ -157,8 +155,9 @@ public class AndroidCapabilities {
 	}
 
 	public void countrySelection(String localeCode, AndroidDriver<MobileElement> wd){    	
-
+			
     	try {
+    		Thread.sleep(2000);
 	    	List<MobileElement> list = wd.findElementsByName("Nochmal versuchen");
 	    	if (list.size() > 0){
 	    		list.get(0).click();
@@ -171,16 +170,28 @@ public class AndroidCapabilities {
 	        wd.manage().timeouts().implicitlyWait(AppiumSetup.timeOutsecond, TimeUnit.SECONDS);	
 	        Thread.sleep(2000);
 	        
-	    	if ( localeCode.equals("DE") || localeCode.equals("de") ) {
+	    	switch (localeCode) {
+	    	case "DE":
+	    		mandant = "Deutschland";
+	    		username = "xcabasicde@thqa.de";
+	    	    password = "hummel123";
 	    		wd.findElementByXPath("//android.widget.ListView[1]/android.widget.LinearLayout[1]").click();
-	            
-	    	} else if ( localeCode.equals("AT") || localeCode.equals("at") ){
+	    		break;
+	    	case "AT":
+	    		mandant = "Österreich";
+	    		username = "xcabasicat@thqa.de";
+	    	    password = "hummel123";
 	    		wd.findElementByXPath("//android.widget.ListView[1]/android.widget.LinearLayout[2]").click();
-	    		
-	    	} else if ( localeCode.equals("CH") || localeCode.equals("ch") ) {
+	    		break;
+	    	case "CH":
+		    	mandant = "Schweiz";
+	    		username = "xcabasicch@thqa.de";
+	    	    password = "hummel123";
 	    		wd.findElementByXPath("//android.widget.ListView[1]/android.widget.LinearLayout[3]").click();
+	    		break;
 	    	}
 	    	Thread.sleep(4000);
+	    	
     	} catch (Exception ex) {
     		if (wd != null) {
         		wd.quit();	
@@ -259,5 +270,17 @@ public class AndroidCapabilities {
 			e.printStackTrace();
 		  	System.exit(0);
 		} 
+	}
+	
+	public void retry(AndroidDriver<MobileElement> wd) throws InterruptedException {
+        wd.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);	
+		List<MobileElement> list = wd.findElementsByName("Erneut versuchen");
+    	if (list.size() > 0){
+    		list.get(0).click();        	
+    	}
+    	Thread.sleep(1000);
+    	
+        wd.manage().timeouts().implicitlyWait(AppiumSetup.timeOutsecond, TimeUnit.SECONDS);	
+        Thread.sleep(5000);
 	}
 }

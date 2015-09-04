@@ -13,6 +13,8 @@ import org.openqa.selenium.NoSuchElementException;
 
 import com.thalia.xca.aos.prop.AbstractExcAction;
 import com.thalia.xca.aos.prop.AndroidCapabilities;
+import com.thalia.xca.aos.prop.AppiumSetup;
+import com.thalia.xca.aos.prop.UIElements;
 
 public class ShoppingCartTest {
 	
@@ -47,6 +49,9 @@ public class ShoppingCartTest {
 		    	element.click();
 				Thread.sleep(3000);
 		
+				aCap.retry(wd);
+		        Thread.sleep(2000);
+		        
 				eName = "eu.thalia.app:id/priceLabel";
 				element = wd.findElementById(eName);
 		    	element.click();
@@ -61,7 +66,7 @@ public class ShoppingCartTest {
 		    	List<MobileElement> temps = wd.findElementsById(eName);
 		    	while (temps.size() == 0){
 					wd.swipe((int)(aCap.screenWidth*0.8), 400, (int)(aCap.screenWidth*0.12), 400, 500);
-			    	Thread.sleep(3000);
+			    	Thread.sleep(25000);
 		    		temps = wd.findElementsById(eName);
 		    		Thread.sleep(3000);
 		    	}
@@ -69,10 +74,10 @@ public class ShoppingCartTest {
 				wd.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		    	Thread.sleep(3000);
 		    	
-		    	eName = "android:id/up";
-				element = wd.findElementById(eName);
+		    	eName = UIElements.upName;
+				element = wd.findElementByName(eName);
 		    	element.click();
-		    	Thread.sleep(5000);
+		    	Thread.sleep(3000);
 		    	
 				wd.getPageSource();
 				eName = "eu.thalia.app:id/countContainer";
@@ -105,8 +110,11 @@ public class ShoppingCartTest {
 				eName = "Ratgeber";
 				element = wd.findElementByName(eName);
 		    	element.click();
-				Thread.sleep(3000);
+				Thread.sleep(4000);
 		
+				aCap.retry(wd);
+		        Thread.sleep(2000);
+		        
 				eName = "eu.thalia.app:id/priceLabel";
 				element = wd.findElementById(eName);
 		    	element.click();
@@ -117,7 +125,7 @@ public class ShoppingCartTest {
 		    	List<MobileElement> temps = wd.findElementsById(eName);
 		    	while (temps.size() == 0){
 					wd.swipe((int)(aCap.screenWidth*0.8), 400, (int)(aCap.screenWidth*0.12), 400, 500);
-			    	Thread.sleep(3000);
+			    	Thread.sleep(25000);
 		    		temps = wd.findElementsById(eName);
 		    		Thread.sleep(3000);
 		    	}
@@ -131,8 +139,8 @@ public class ShoppingCartTest {
 				wd.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		    	Thread.sleep(3000);
 		
-		    	eName = "android:id/up";
-				element = wd.findElementById(eName);
+		    	eName = UIElements.upName;
+				element = wd.findElementByName(eName);
 		    	element.click();
 		    	Thread.sleep(3000);
 		    	
@@ -176,6 +184,9 @@ public class ShoppingCartTest {
 		    	element.click();
 				Thread.sleep(3000);
 		
+				aCap.retry(wd);
+		        Thread.sleep(2000);
+		        
 				eName = "eu.thalia.app:id/priceLabel";
 				element = wd.findElementById(eName);
 		    	element.click();
@@ -186,7 +197,7 @@ public class ShoppingCartTest {
 		    	List<MobileElement> temps = wd.findElementsById(eName);
 		    	while (temps.size() == 0){
 					wd.swipe((int)(aCap.screenWidth*0.8), 400, (int)(aCap.screenWidth*0.12), 400, 500);
-			    	Thread.sleep(3000);
+			    	Thread.sleep(25000);
 		    		temps = wd.findElementsById(eName);
 		    		Thread.sleep(3000);
 		    	}
@@ -199,8 +210,8 @@ public class ShoppingCartTest {
 				wd.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		    	Thread.sleep(3000);
 		
-		    	eName = "android:id/up";
-				element = wd.findElementById(eName);
+		    	eName = UIElements.upName;
+				element = wd.findElementByName(eName);
 		    	element.click();
 		    	Thread.sleep(3000);
 		    	
@@ -213,7 +224,11 @@ public class ShoppingCartTest {
 		    	Thread.sleep(8000);
 
 				wd.getPageSource();
-		    	eName = "Entfernen Link";
+		    	if (AppiumSetup.versionNr.equals("5")){
+					eName = "Entfernen";
+				} else {
+					eName = "Entfernen Link";
+				}
 		    	element = wd.findElementByName(eName);
 		    	element.click();
 		    	Thread.sleep(20000);
@@ -250,6 +265,9 @@ public class ShoppingCartTest {
 		    	element.click();
 				Thread.sleep(3000);
 		
+				aCap.retry(wd);
+		        Thread.sleep(2000);
+		        
 				eName = "eu.thalia.app:id/priceLabel";
 				element = wd.findElementById(eName);
 		    	element.click();
@@ -260,7 +278,7 @@ public class ShoppingCartTest {
 		    	List<MobileElement> temps = wd.findElementsById(eName);
 		    	while (temps.size() == 0){
 					wd.swipe((int)(aCap.screenWidth*0.8), 400, (int)(aCap.screenWidth*0.12), 400, 500);
-			    	Thread.sleep(3000);
+			    	Thread.sleep(25000);
 		    		temps = wd.findElementsById(eName);
 		    		Thread.sleep(3000);
 		    	}
@@ -273,8 +291,8 @@ public class ShoppingCartTest {
 				wd.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		    	Thread.sleep(3000);
 		
-		    	eName = "android:id/up";
-				element = wd.findElementById(eName);
+		    	eName = UIElements.upName;
+				element = wd.findElementByName(eName);
 		    	element.click();
 		    	Thread.sleep(3000);
 		    	
@@ -287,7 +305,11 @@ public class ShoppingCartTest {
 		    	Thread.sleep(8000);
 
 				wd.getPageSource();
-		    	eName = "Zum Merkzettel Link";
+				if (AppiumSetup.versionNr.equals("5")){
+					eName = "Zum Merkzettel";
+				} else {
+					eName = "Zum Merkzettel Link";
+				}
 		    	element = wd.findElementByName(eName);
 		    	element.click();
 		    	Thread.sleep(20000);
@@ -324,6 +346,9 @@ public class ShoppingCartTest {
 		    	element.click();
 				Thread.sleep(3000);
 		
+				aCap.retry(wd);
+		        Thread.sleep(2000);
+		        
 				wd.getPageSource();
 				eName = "eu.thalia.app:id/priceLabel";
 				element = wd.findElementById(eName);
@@ -335,7 +360,7 @@ public class ShoppingCartTest {
 		    	List<MobileElement> temps = wd.findElementsById(eName);
 		    	while (temps.size() == 0){
 					wd.swipe((int)(aCap.screenWidth*0.8), 400, (int)(aCap.screenWidth*0.12), 400, 500);
-			    	Thread.sleep(3000);
+			    	Thread.sleep(25000);
 		    		temps = wd.findElementsById(eName);
 		    		Thread.sleep(3000);
 		    	}
@@ -353,8 +378,8 @@ public class ShoppingCartTest {
 		    	element.click();
 		    	Thread.sleep(3000);
 		
-		    	eName = "android:id/up";
-				element = wd.findElementById(eName);
+		    	eName = UIElements.upName;
+				element = wd.findElementByName(eName);
 		    	element.click();
 		    	Thread.sleep(3000);
 		    	

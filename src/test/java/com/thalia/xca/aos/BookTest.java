@@ -15,6 +15,7 @@ import org.openqa.selenium.NoSuchElementException;
 import com.thalia.xca.aos.prop.AbstractExcAction;
 import com.thalia.xca.aos.prop.AndroidCapabilities;
 import com.thalia.xca.aos.prop.AppiumSetup;
+import com.thalia.xca.aos.prop.UIElements;
 
 public class BookTest {
 	
@@ -50,11 +51,15 @@ public class BookTest {
 		    	element.click();
 				Thread.sleep(4000);
 		
+				aCap.retry(wd);
+		        Thread.sleep(2000);
+		        
 				eName = "eu.thalia.app:id/action_view_toggle_tab";
 		    	element = wd.findElementById(eName);
 		    	element.click();
 		    	Thread.sleep(3000);
 		    		
+		    	
 		    	eName = "eu.thalia.app:id/currentPrice";
 				element = wd.findElementsById(eName).get(0);
 		    	String checkPrice = element.getAttribute("name");
@@ -64,9 +69,10 @@ public class BookTest {
 				element = wd.findElementsById(eName).get(0);
 		    	String checkName = element.getAttribute("name");
 		    	element.click();
-				Thread.sleep(1000);
+				Thread.sleep(3000);
 				
 				wd.getPageSource();
+	        	wd.swipe(10, 20, 10, 20, 100);
 		    	eName = "eu.thalia.app:id/currentPrice";
 				element = wd.findElementsById(eName).get(0);
 				String resultPrice = element.getAttribute("name");
@@ -113,6 +119,9 @@ public class BookTest {
 				element.click();
 				Thread.sleep(5000);	
 		
+				aCap.retry(wd);
+		        Thread.sleep(2000);
+		        
 				eName = "eu.thalia.app:id/articleImg";
 				wd.findElementsById(eName).get(0).click();
 				Thread.sleep(4000);
@@ -154,6 +163,9 @@ public class BookTest {
 				element.click();
 				Thread.sleep(4000);
 		
+				aCap.retry(wd);
+		        Thread.sleep(2000);
+		        
 				eName = "eu.thalia.app:id/articleImg";
 				wd.findElementsById(eName).get(0).click();
 				Thread.sleep(4000);
@@ -168,8 +180,8 @@ public class BookTest {
 				wd.findElementsByName(eName).get(0).click();
 				Thread.sleep(1000);
 
-				eName = "android:id/action_bar_title";
-		    	element = wd.findElementById(eName);
+				eName = UIElements.actionBarTitleClass;
+				element = wd.findElementsByClassName(eName).get(0);
 		    	String result = element.getAttribute("name");
 		    	
 				assertTrue("The read example wasn't displayed correctly in detail. Result : " , result.contains("Leseprobe"));
@@ -178,7 +190,7 @@ public class BookTest {
     	action.performAction();
     }    
     
-    @Test
+    @Ignore @Test
     public void availabilityTest() throws Exception {
 
     	AbstractExcAction action =  new AbstractExcAction(wd){
@@ -199,6 +211,9 @@ public class BookTest {
 				element.click();
 				Thread.sleep(4000);
 		
+				aCap.retry(wd);
+		        Thread.sleep(2000);
+		        
 				eName = "eu.thalia.app:id/articleImg";
 				wd.findElementsById(eName).get(0).click();
 				Thread.sleep(4000);

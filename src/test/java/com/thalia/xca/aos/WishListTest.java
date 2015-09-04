@@ -16,6 +16,7 @@ import org.openqa.selenium.NoSuchElementException;
 import com.thalia.xca.aos.prop.AbstractExcAction;
 import com.thalia.xca.aos.prop.AndroidCapabilities;
 import com.thalia.xca.aos.prop.AppiumSetup;
+import com.thalia.xca.aos.prop.UIElements;
 
 public class WishListTest {
 	
@@ -50,6 +51,9 @@ public class WishListTest {
 		    	element.click();
 				Thread.sleep(3000);
 		
+				aCap.retry(wd);
+		        Thread.sleep(2000);
+		        
 				eName = "eu.thalia.app:id/priceLabel";
 				element = wd.findElementById(eName);
 		    	element.click();
@@ -64,10 +68,10 @@ public class WishListTest {
 		    	element.click();
 		    	Thread.sleep(3000);
 		
-		    	eName = "android:id/up";
-				element = wd.findElementById(eName);
+		    	eName = UIElements.upName;
+				element = wd.findElementByName(eName);
 		    	element.click();
-		    	Thread.sleep(5000);
+		    	Thread.sleep(3000);
 
 		    	wd.getPageSource();
 		    	eName = "eu.thalia.app:id/countContainer";
@@ -102,6 +106,9 @@ public class WishListTest {
 		    	element.click();
 				Thread.sleep(3000);
 		
+				aCap.retry(wd);
+		        Thread.sleep(2000);
+		        
 				eName = "eu.thalia.app:id/priceLabel";
 				element = wd.findElementById(eName);
 		    	element.click();
@@ -117,8 +124,8 @@ public class WishListTest {
 		    	element.click();
 		    	Thread.sleep(3000);
 		
-		    	eName = "android:id/up";
-				element = wd.findElementById(eName);
+		    	eName = UIElements.upName;
+				element = wd.findElementByName(eName);
 		    	element.click();
 		    	Thread.sleep(3000);
 		    	
@@ -160,6 +167,9 @@ public class WishListTest {
 		    	element.click();
 				Thread.sleep(3000);
 		
+				aCap.retry(wd);
+		        Thread.sleep(2000);
+
 				eName = "eu.thalia.app:id/priceLabel";
 				element = wd.findElementById(eName);
 		    	element.click();
@@ -170,8 +180,8 @@ public class WishListTest {
 		    	element.click();
 		    	Thread.sleep(3000);
 		
-		    	eName = "android:id/up";
-				element = wd.findElementById(eName);
+		    	eName = UIElements.upName;
+				element = wd.findElementByName(eName);
 		    	element.click();
 		    	Thread.sleep(3000);
 		    	
@@ -180,7 +190,7 @@ public class WishListTest {
 		    	element.click();
 		    	Thread.sleep(3000);
 		    	
-		    	eName = "eu.thalia.app:id/overflowBtn";
+		    	eName = "eu.thalia.app:id/removeFromWishlistBtn";
 				element = wd.findElementById(eName);
 		    	element.click();
 		    	Thread.sleep(3000);
@@ -223,6 +233,11 @@ public class WishListTest {
 		    	element.click();
 				Thread.sleep(3000);
 		
+				aCap.retry(wd);
+		        Thread.sleep(2000);
+		        
+	        	wd.swipe(10, 20, 10, 20, 100);
+	        	wd.getPageSource();
 				eName = "eu.thalia.app:id/priceLabel";
 				element = wd.findElementById(eName);
 		    	element.click();
@@ -233,8 +248,8 @@ public class WishListTest {
 		    	element.click();
 		    	Thread.sleep(3000);
 		
-		    	eName = "android:id/up";
-				element = wd.findElementById(eName);
+		    	eName = UIElements.upName;
+				element = wd.findElementByName(eName);
 		    	element.click();
 		    	Thread.sleep(3000);
 		    	
@@ -243,7 +258,7 @@ public class WishListTest {
 		    	element.click();
 		    	Thread.sleep(3000);
 		    	
-		    	eName = "eu.thalia.app:id/shoppingCartBtn";
+		    	eName = "eu.thalia.app:id/addToShoppingCartBtn";
 				element = wd.findElementById(eName);
 		    	element.click();
 		    	Thread.sleep(3000);
@@ -282,6 +297,9 @@ public class WishListTest {
 		    	element.click();
 				Thread.sleep(5000);
 		
+				aCap.retry(wd);
+		        Thread.sleep(2000);
+		        
 				eName = "eu.thalia.app:id/priceLabel";
 				element = wd.findElementById(eName);
 		    	element.click();
@@ -293,8 +311,8 @@ public class WishListTest {
 		    	Thread.sleep(3000);
 		    	element.click();
 		
-		    	eName = "android:id/up";
-				element = wd.findElementById(eName);
+		    	eName = UIElements.upName;
+				element = wd.findElementByName(eName);
 		    	element.click();
 		    	Thread.sleep(3000);
 

@@ -11,6 +11,7 @@ import org.openqa.selenium.NoSuchElementException;
 
 import com.thalia.xca.aos.prop.AbstractExcAction;
 import com.thalia.xca.aos.prop.AndroidCapabilities;
+import com.thalia.xca.aos.prop.UIElements;
 
 public class BasicTest {
 	
@@ -38,8 +39,8 @@ public class BasicTest {
 				element.click();
 				Thread.sleep(2000);
 
-				eName = "android:id/action_bar_title";
-				element = wd.findElementById(eName);
+				eName = UIElements.actionBarTitleClass;
+				element = wd.findElementsByClassName(eName).get(0);
 				String result = element.getAttribute("name");
 
 				assertTrue("The category: (" + check + ") didnt change the view. Result: " + result, result.equals(check));
@@ -62,8 +63,8 @@ public class BasicTest {
 				element.click();
 				Thread.sleep(2000);
 
-				eName = "android:id/action_bar_title";
-				element = wd.findElementById(eName);
+				eName = UIElements.actionBarTitleClass;
+				element = wd.findElementsByClassName(eName).get(0);
 				String result = element.getAttribute("name");
 
 				assertTrue("The category: (" + check + ") didnt change the view. Result: " + result, result.equals(check));
@@ -86,8 +87,8 @@ public class BasicTest {
 				element.click();
 				Thread.sleep(2000);
 
-				eName = "android:id/action_bar_title";
-				element = wd.findElementById(eName);
+				eName = UIElements.actionBarTitleClass;
+				element = wd.findElementsByClassName(eName).get(0);
 				String result = element.getAttribute("name");
 
 				assertTrue("The category: (" + check + ") didnt change the view. Result: " + result, result.equals(check));
@@ -112,8 +113,8 @@ public class BasicTest {
 				element.click();
 				Thread.sleep(2000);
 
-				eName = "android:id/action_bar_title";
-				element = wd.findElementById(eName);
+				eName = UIElements.actionBarTitleClass;
+				element = wd.findElementsByClassName(eName).get(0);
 				String result = element.getAttribute("name");
 
 				assertTrue("The category: (" + check + ") didnt change the view. Result: " + result, result.equals(check));
@@ -135,8 +136,8 @@ public class BasicTest {
 				element.click();
 				Thread.sleep(2000);
 
-				eName = "android:id/action_bar_title";
-				element = wd.findElementById(eName);
+				eName = UIElements.actionBarTitleClass;
+				element = wd.findElementsByClassName(eName).get(0);
 				String result = element.getAttribute("name");
 
 				assertTrue("The category: (" + check + ") didnt change the view. Result: " + result, result.equals(check));
@@ -152,12 +153,12 @@ public class BasicTest {
 			@Override
 			public void actionPerformedWithThrows() throws NoSuchElementException, InterruptedException {
     	
-		    	eName = "eu.thalia.app:id/action_search";
+		    	eName = UIElements.searchAction;
 		    	element = wd.findElementById(eName);
 		    	element.click();		    	      
 		    	Thread.sleep(1000);
 		    	
-		    	eName = "android:id/search_src_text";
+		    	eName = UIElements.searchSrc;
 		    	element = wd.findElementById(eName);
 		    	Thread.sleep(1000);
 		    	
@@ -184,8 +185,8 @@ public class BasicTest {
 				element.click();
 				Thread.sleep(2000);
 				
-				eName = "android:id/action_bar_title";
-				element = wd.findElementById(eName);
+				eName = UIElements.actionBarTitleClass;
+				element = wd.findElementsByClassName(eName).get(0);
 				String result = element.getAttribute("name");
 				
 				assertTrue("The category: (" + check + ") didnt change the view. Result: " + result, result.equals(check));
@@ -210,8 +211,8 @@ public class BasicTest {
 				element.click();
 				Thread.sleep(2000);
 				
-				eName = "android:id/action_bar_title";
-				element = wd.findElementById(eName);
+				eName = UIElements.actionBarTitleClass;
+				element = wd.findElementsByClassName(eName).get(0);
 				String result = element.getAttribute("name");
 
 				assertTrue("The category: (" + check + ") didnt change the view. Result: " + result, result.equals(check));			
@@ -239,8 +240,8 @@ public class BasicTest {
 				element.click();
 				Thread.sleep(2000);
 
-				eName = "android:id/action_bar_title";
-				element = wd.findElementById(eName);
+				eName = UIElements.actionBarTitleClass;
+				element = wd.findElementsByClassName(eName).get(0);
 				String result = element.getAttribute("name");
 
 				assertTrue("The category: (" + check + ") didnt change the view. Result: " + result, result.equals(check));
@@ -256,21 +257,21 @@ public class BasicTest {
 			@Override
 			public void actionPerformedWithThrows() throws NoSuchElementException, InterruptedException {
     	
-				wd.swipe(100, (int)(aCap.screenHeight*0.8), 100, (int)(aCap.screenHeight*0.15), 500);
+				wd.swipe(100, (int)(aCap.screenHeight*0.5), 100, (int)(aCap.screenHeight*0.15), 500);
 				Thread.sleep(3000);
 				
 				eName = "eu.thalia.app:id/accountsettings_item";
 				element = wd.findElementById(eName);		
 		    	String check = element.getAttribute("name");
 				element.click();
-				Thread.sleep(2000);
+				Thread.sleep(4000);
 
-				eName = "android:id/action_bar_title";
-				element = wd.findElementById(eName);
+				eName = UIElements.actionBarTitleClass;
+				element = wd.findElementsByClassName(eName).get(0);
 				String result = element.getAttribute("name");
 
 				assertTrue("The category: (" + check + ") didnt change the view. Result: " + result, result.equals(check));
-			}
+			} 
     	};
     	action.performAction();
     }
@@ -291,7 +292,8 @@ public class BasicTest {
 				element = wd.findElementById(eName);
 		    	Thread.sleep(500);
 		    	
-		    	assertTrue("User preferences doesn't match the shop selection", element.getAttribute("name").contains("Deutschland"));	
+		    	
+		    	assertTrue("User preferences doesn't match the shop selection", element.getAttribute("name").contains(aCap.mandant));	
 		    }
     	};	
     	action.performAction();

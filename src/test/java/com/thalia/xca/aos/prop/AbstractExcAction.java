@@ -28,9 +28,9 @@ public abstract class AbstractExcAction {
 			actionPerformedWithThrows();
 		} catch (NoSuchElementException ex) {
             wd.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-			List<MobileElement> temps = wd.findElementsByName("\"Thalia\" wurde beendet.");
-			if (temps.size() > 0){
-	    		assertTrue("Before clicking Element \"" + eName + "\" the app broke down: SessionNotFoundException", false);
+			List<MobileElement> temps = wd.findElementsByClassName("android.widget.TextView");
+			if (temps.size() > 0 && temps.get(0).getAttribute("name").contains("Thalia")){
+	    		assertTrue("Before clicking Element \"" + eName + "\" the app broke down: NoSuchElementException", false);
 			} else {
 				assertTrue("Element \"" + eName + "\" could not be located : NoSuchElementException", false);
 			}
@@ -39,7 +39,14 @@ public abstract class AbstractExcAction {
 		} catch (ArrayIndexOutOfBoundsException e) {
     		assertTrue("Element \"" + eName + "\" could not be located : ArrayIndexOutOfBoundsException", false);
 		} catch (IndexOutOfBoundsException e) {
-    		assertTrue("Element \"" + eName + "\" could not be located : IndexOutOfBoundsException", false);
+			wd.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+			List<MobileElement> temps = wd.findElementsByClassName("android.widget.TextView");
+			if (temps.size() > 0 && temps.get(0).getAttribute("name").contains("Thalia")){
+	    		assertTrue("Before clicking Element \"" + eName + "\" the app broke down: IndexOutOfBoundsException", false);
+			} else {
+				assertTrue("Element \"" + eName + "\" could not be located : IndexOutOfBoundsException", false);
+			}
+    		
 		} catch (WebDriverException e) {
 			assertTrue("WebDriver Exception", false);
 		

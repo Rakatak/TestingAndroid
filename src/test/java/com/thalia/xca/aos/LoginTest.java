@@ -14,6 +14,7 @@ import org.openqa.selenium.NoSuchElementException;
 
 import com.thalia.xca.aos.prop.AbstractExcAction;
 import com.thalia.xca.aos.prop.AndroidCapabilities;
+import com.thalia.xca.aos.prop.UIElements;
 
 public class LoginTest {
 	
@@ -235,8 +236,8 @@ public class LoginTest {
 		    	element.click();
 		    	Thread.sleep(3000);
 		    	
-		    	eName = "android:id/up";
-		    	element = wd.findElementById(eName);  //open menu
+		    	eName = UIElements.upName;
+				element = wd.findElementByName(eName);
 		    	element.click();
 		    	Thread.sleep(3000);
 		    	
@@ -255,8 +256,8 @@ public class LoginTest {
 					Thread.sleep(1000);
 				}	
 				
-				eName = "android:id/action_bar_title";
-				element = wd.findElementById(eName);
+				eName = UIElements.actionBarTitleClass;
+				element = wd.findElementsByClassName(eName).get(0);
 				String result = element.getAttribute("name");
 				
 				assertTrue("The category: (" + check + ") didnt change the view", result.contains(check));
