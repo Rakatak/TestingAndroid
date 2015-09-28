@@ -102,7 +102,7 @@ public class BookTest {
 		    	checkList.add("eu.thalia.app:id/articleSubtitle");
 		    	checkList.add("eu.thalia.app:id/currentPrice");
 		    	checkList.add("eu.thalia.app:id/articleImg");
-		    	checkList.add("eu.thalia.app:id/shoppingCartBtn");
+		    	checkList.add(UIElements.shoppingCartBtn);
 		        
 		    	Thread.sleep(500);
 		               

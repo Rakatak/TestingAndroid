@@ -16,6 +16,7 @@ import org.openqa.selenium.NoSuchElementException;
 
 import com.thalia.xca.aos.prop.AbstractExcAction;
 import com.thalia.xca.aos.prop.AndroidCapabilities;
+import com.thalia.xca.aos.prop.AppiumSetup;
 import com.thalia.xca.aos.prop.UIElements;
 
 public class ShopTest {
@@ -205,7 +206,11 @@ public class ShopTest {
 				Thread.sleep(3000);
 				
 				eName = "Prize < ";
-				element = wd.findElementByXPath("//android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[2]/android.widget.ListView[1]/android.widget.CheckedTextView[2]");
+				if (aCap.screenHeight == AppiumSetup.nexusHeight && AppiumSetup.versionNr.equals("5")){
+					element = wd.findElementByXPath("//android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.ListView[1]/android.widget.CheckedTextView[2]");
+				} else {
+					element = wd.findElementByXPath("//android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[2]/android.widget.ListView[1]/android.widget.CheckedTextView[2]");
+				}
 				String temp = element.getAttribute("name");
 				Pattern p = Pattern.compile("\\d*\\.\\d+");
 			    Matcher m = p.matcher(temp);

@@ -29,7 +29,7 @@ public abstract class AbstractExcAction {
 		} catch (NoSuchElementException ex) {
             wd.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 			List<MobileElement> temps = wd.findElementsByClassName("android.widget.TextView");
-			if (temps.size() > 0 && temps.get(0).getAttribute("name").contains("Thalia")){
+			if (temps.size() > 0 && temps.get(0).getAttribute("name").contains("Thalia wurde")){
 	    		assertTrue("Before clicking Element \"" + eName + "\" the app broke down: NoSuchElementException", false);
 			} else {
 				assertTrue("Element \"" + eName + "\" could not be located : NoSuchElementException", false);
@@ -41,7 +41,7 @@ public abstract class AbstractExcAction {
 		} catch (IndexOutOfBoundsException e) {
 			wd.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 			List<MobileElement> temps = wd.findElementsByClassName("android.widget.TextView");
-			if (temps.size() > 0 && temps.get(0).getAttribute("name").contains("Thalia")){
+			if (temps.size() > 0 && temps.get(0).getAttribute("name").contains("Thalia wurde")){
 	    		assertTrue("Before clicking Element \"" + eName + "\" the app broke down: IndexOutOfBoundsException", false);
 			} else {
 				assertTrue("Element \"" + eName + "\" could not be located : IndexOutOfBoundsException", false);

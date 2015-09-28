@@ -6,7 +6,6 @@ import io.appium.java_client.android.AndroidDriver;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.InetAddress;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.List;
@@ -28,7 +27,7 @@ public class AndroidCapabilities {
     
 	public AndroidDriver<MobileElement> setCap() throws InterruptedException, IOException{
 		
-		String computername = InetAddress.getLocalHost().getHostName();
+		final String currentUser = System.getProperty("user.name");
 		
 		AndroidDriver<MobileElement> wd = null;
         
@@ -36,7 +35,7 @@ public class AndroidCapabilities {
         
 		capabilities.setCapability("deviceName", "whatever");
 
-    	if (computername.equals("Reserve2-iMac-2.local") || computername.equals("Reserve2-iMac.local") || computername.equals("Andreas-MacBook-Pro")){
+        if (!currentUser.equals("jenkins")){	
 
     		capabilities.setCapability("app",AppiumSetup.appPath);
     		wd = new AndroidDriver<MobileElement>(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
@@ -57,7 +56,7 @@ public class AndroidCapabilities {
             
             AppiumSetup.versionNr = System.getProperty("VERSION");
 
-    		String jenkinsPath = currentDir + "/xca/thalia/build/outputs/apk/thalia-" + mode + ".apk";
+    		String jenkinsPath = currentDir + "/xca/thalia/build/outputs/apk/thalia-Origin_-" + mode + ".apk";
 
     		capabilities.setCapability("app", jenkinsPath);
             wd = new AndroidDriver<MobileElement>(new URL("http://0.0.0.0:" + port + "/wd/hub"), capabilities);
@@ -109,9 +108,9 @@ public class AndroidCapabilities {
 			element.click();
 			Thread.sleep(1000);
 			
-			element = wd.findElementById("android:id/home");
-			element.click();
-			Thread.sleep(1000);
+			element = wd.findElementByName(UIElements.upName);
+	    	element.click();
+	    	Thread.sleep(3000);
 			
 		} catch (Exception ex){
         	wd.quit();	
@@ -282,5 +281,21 @@ public class AndroidCapabilities {
     	
         wd.manage().timeouts().implicitlyWait(AppiumSetup.timeOutsecond, TimeUnit.SECONDS);	
         Thread.sleep(5000);
+	}
+	
+	public MobileElement putInCart(AndroidDriver<MobileElement> wd, String eName) throws InterruptedException{
+		wd.manage().timeouts().implicitlyWait(6, TimeUnit.SECONDS);
+		Thread.sleep(3330);
+		int limit = 0;
+    	List<MobileElement> temps = wd.findElementsById(eName);
+		while (temps.size() == 0 && limit < 5){
+			wd.swipe((int)(screenWidth*0.8), 400, (int)(screenWidth*0.12), 400, 500);
+			Thread.sleep(3000);
+			temps = wd.findElementsById(eName);
+			Thread.sleep(3330);
+			limit++;
+		}
+		wd.manage().timeouts().implicitlyWait(AppiumSetup.timeOutfirst, TimeUnit.SECONDS);
+		return temps.get(0);
 	}
 }

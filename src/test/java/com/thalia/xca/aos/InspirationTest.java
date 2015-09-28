@@ -115,6 +115,8 @@ public class InspirationTest {
 				element.click();
 				Thread.sleep(1000);
 				
+				aCap.retry(wd);
+				
 				eName = "Thalia Bestseller Belletristik";
 //				element = wd.findElementByName(eName);
 				Thread.sleep(1000);
@@ -159,6 +161,8 @@ public class InspirationTest {
 				eName = "Neuheiten";
 				element = wd.findElementByName(eName);
 				Thread.sleep(1000);
+				
+				aCap.retry(wd);
 				
 				wd.getPageSource();
 				eName = "eu.thalia.app:id/articleImg";
@@ -213,8 +217,8 @@ public class InspirationTest {
 				
 //				wd.swipe((int)(aCap.screenWidth*0.7), (int)(aCap.screenHeight*0.8), (int)(aCap.screenWidth*0.8), (int)(aCap.screenHeight*0.36), 500);
 				wd.getPageSource();
-				wd.scrollTo("Kalender");
 				eName = "Kalender";
+				wd.scrollTo(eName);
 				element = wd.findElementByName(eName);
 				Thread.sleep(2000);
 

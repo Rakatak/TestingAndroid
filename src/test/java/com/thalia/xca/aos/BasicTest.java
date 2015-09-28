@@ -256,7 +256,8 @@ public class BasicTest {
     	AbstractExcAction action =  new AbstractExcAction(wd){
 			@Override
 			public void actionPerformedWithThrows() throws NoSuchElementException, InterruptedException {
-    	
+
+				Thread.sleep(4000);
 				wd.swipe(100, (int)(aCap.screenHeight*0.5), 100, (int)(aCap.screenHeight*0.15), 500);
 				Thread.sleep(3000);
 				
@@ -282,7 +283,11 @@ public class BasicTest {
     	AbstractExcAction action =  new AbstractExcAction(wd){
 			@Override
 			public void actionPerformedWithThrows() throws NoSuchElementException, InterruptedException {
-								    	
+								   
+				Thread.sleep(4000);
+				wd.swipe(100, (int)(aCap.screenHeight*0.5), 100, (int)(aCap.screenHeight*0.15), 500);
+				Thread.sleep(3000);
+				
 		    	eName = "eu.thalia.app:id/accountsettings_item";
 				element = wd.findElementById(eName);		
 				element.click();

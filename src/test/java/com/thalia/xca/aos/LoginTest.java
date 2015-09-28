@@ -249,6 +249,7 @@ public class LoginTest {
 				element.click();
 				Thread.sleep(1000);
 				
+				wd.manage().timeouts().implicitlyWait(6, TimeUnit.SECONDS);
 				eName = "OK";
 				List<MobileElement> list = wd.findElementsByName(eName);
 				if (list.size() > 0) {

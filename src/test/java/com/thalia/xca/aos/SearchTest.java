@@ -41,7 +41,7 @@ public class SearchTest {
 				String searchInput = "Rakatak";
 
 				// open search
-		    	eName = UIElements.searchAction;
+				eName = UIElements.searchAction;
 				element = wd.findElementById(eName);
 				element.click();
 				Thread.sleep(2000);
@@ -97,11 +97,10 @@ public class SearchTest {
 				// the input for search
 				String searchInput = "Hund";
 				List<MobileElement> resultList;
-				int checker = 0;
 				Thread.sleep(500);
 
 				// open search
-		    	eName = UIElements.searchAction;
+				eName = UIElements.searchAction;
 				element = wd.findElementById(eName);
 				element.click();
 				Thread.sleep(2000);
@@ -123,19 +122,11 @@ public class SearchTest {
 				eName = "eu.thalia.app:id/articleTitle";
 				resultList = wd.findElementsById(eName);
 
-				// look if searchresults contain searchinput
-				for (int i = 0; i < resultList.size(); i++) {
-					if (resultList.get(i).getAttribute("name")
-							.contains(searchInput)) {
-						checker++;
-					}
-				}
-
 				assertTrue(
 						"The input: ("
 								+ searchInput
 								+ ") wasn't displayed correctly in the results or doesn't have any result",
-						checker > 0);
+						resultList.size() > 0);
 			}
 		};
 		action.performAction();
@@ -150,7 +141,7 @@ public class SearchTest {
 					throws NoSuchElementException, InterruptedException {
 
 				// open search
-		    	eName = UIElements.searchAction;
+				eName = UIElements.searchAction;
 				element = wd.findElementById(eName);
 				element.click();
 				Thread.sleep(3000);
@@ -201,11 +192,10 @@ public class SearchTest {
 				// the input for search
 				String searchInput = "Katze";
 				List<MobileElement> resultList;
-				int checker = 0;
 				Thread.sleep(500);
 
 				// open search
-		    	eName = UIElements.searchAction;
+				eName = UIElements.searchAction;
 				element = wd.findElementById(eName);
 				element.click();
 				Thread.sleep(2000);
@@ -229,8 +219,14 @@ public class SearchTest {
 				Thread.sleep(500);
 
 				eName = "eBooks";
-				element = wd
-						.findElementByXPath("//android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[2]/android.widget.ListView[1]/android.widget.CheckedTextView[3]");
+				if (aCap.screenHeight == AppiumSetup.nexusHeight
+						&& AppiumSetup.versionNr.equals("5")) {
+					element = wd
+							.findElementByXPath("//android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.ListView[1]/android.widget.CheckedTextView[3]");
+				} else {
+					element = wd
+							.findElementByXPath("//android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[2]/android.widget.ListView[1]/android.widget.CheckedTextView[3]");
+				}
 				String check = element.getAttribute("name").substring(1, 6);
 				Thread.sleep(2000);
 				element.click();
@@ -243,21 +239,13 @@ public class SearchTest {
 
 				eName = "eu.thalia.app:id/articleTitle";
 				resultList = wd.findElementsById(eName);
-
-				// look if searchresults contain searchinput
-				for (int i = 0; i < resultList.size(); i++) {
-					if (resultList.get(i).getAttribute("name")
-							.contains(searchInput)) {
-						checker++;
-					}
-				}
 				Thread.sleep(2000);
 
 				assertTrue(
 						"The input: ("
 								+ searchInput
 								+ ") wasn't displayed correctly in the results or doesn't have any result",
-						checker > 0);
+								resultList.size() > 0);
 				Thread.sleep(2000);
 
 				eName = "Verfeinern";
@@ -288,7 +276,7 @@ public class SearchTest {
 					throws NoSuchElementException, InterruptedException {
 
 				// open search
-		    	eName = UIElements.searchAction;
+				eName = UIElements.searchAction;
 				element = wd.findElementById(eName);
 				element.click();
 				Thread.sleep(2000);
@@ -341,11 +329,10 @@ public class SearchTest {
 				// the input for search
 				String searchInput = "Katze";
 				List<MobileElement> resultList;
-				int checker = 0;
 				Thread.sleep(500);
 
 				// open search
-		    	eName = UIElements.searchAction;
+				eName = UIElements.searchAction;
 				element = wd.findElementById(eName);
 				element.click();
 				Thread.sleep(2000);
@@ -369,7 +356,7 @@ public class SearchTest {
 				element.click();
 				Thread.sleep(4000);
 
-				eName = "zuletzt erschienen";
+				eName = "Verkaufsrang";
 				element = wd.findElementByName(eName);
 				String check = element.getAttribute("name");
 				element.click();
@@ -380,16 +367,9 @@ public class SearchTest {
 				element.click();
 				Thread.sleep(3000);
 
-				eName = "eu.thalia.app:id/articleTitle";
+				wd.hideKeyboard();
+				eName = "eu.thalia.app:id/articlePrice";
 				resultList = wd.findElementsById(eName);
-
-				// look if searchresults contain searchinput
-				for (int i = 0; i < resultList.size(); i++) {
-					if (resultList.get(i).getAttribute("name")
-							.contains(searchInput)) {
-						checker++;
-					}
-				}
 				Thread.sleep(6000);
 
 				eName = "Verfeinern";
@@ -402,8 +382,7 @@ public class SearchTest {
 				int checker2 = 0;
 
 				for (MobileElement element : list) {
-					if (element.getAttribute("name").contains(
-							"zuletzt erschienen")) {
+					if (element.getAttribute("name").contains("Verkaufsrang")) {
 						checker2++;
 						break;
 					}
@@ -413,7 +392,7 @@ public class SearchTest {
 						"The input: ("
 								+ searchInput
 								+ ") wasn't displayed correctly in the results or doesn't have any result",
-						checker > 0);
+						resultList.size() > 0);
 				assertTrue("The search option: (" + check
 						+ ") wasn't displayed/selected correctly ",
 						checker2 > 0);
@@ -446,7 +425,7 @@ public class SearchTest {
 				checkList.add("Software");
 
 				// open search
-		    	eName = UIElements.searchAction;
+				eName = UIElements.searchAction;
 				element = wd.findElementById(eName);
 				element.click();
 				Thread.sleep(2000);
@@ -502,7 +481,7 @@ public class SearchTest {
 				checkList.add("Titel: Z-A");
 
 				// open search
-		    	eName = UIElements.searchAction;
+				eName = UIElements.searchAction;
 				element = wd.findElementById(eName);
 				element.click();
 				Thread.sleep(2000);

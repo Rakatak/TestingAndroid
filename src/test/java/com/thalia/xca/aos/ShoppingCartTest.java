@@ -61,16 +61,11 @@ public class ShoppingCartTest {
 				element = wd.findElementById(eName);
 		    	Thread.sleep(2000);
 
-		    	wd.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-		    	eName = "eu.thalia.app:id/shoppingCartBtn";
-		    	List<MobileElement> temps = wd.findElementsById(eName);
-		    	while (temps.size() == 0){
-					wd.swipe((int)(aCap.screenWidth*0.8), 400, (int)(aCap.screenWidth*0.12), 400, 500);
-			    	Thread.sleep(25000);
-		    		temps = wd.findElementsById(eName);
-		    		Thread.sleep(3000);
-		    	}
-		    	temps.get(0).click();
+		    	eName = UIElements.shoppingCartBtn;
+		        MobileElement temp = aCap.putInCart(wd, eName);
+		        Thread.sleep(3000);
+		        
+		    	temp.click();
 				wd.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		    	Thread.sleep(3000);
 		    	
@@ -79,6 +74,7 @@ public class ShoppingCartTest {
 		    	element.click();
 		    	Thread.sleep(3000);
 		    	
+				List<MobileElement> temps;
 				wd.getPageSource();
 				eName = "eu.thalia.app:id/countContainer";
 				temps = wd.findElementsById(eName);
@@ -120,22 +116,16 @@ public class ShoppingCartTest {
 		    	element.click();
 		    	Thread.sleep(3000);
 		    	
-		    	wd.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-		    	eName = "eu.thalia.app:id/shoppingCartBtn";
-		    	List<MobileElement> temps = wd.findElementsById(eName);
-		    	while (temps.size() == 0){
-					wd.swipe((int)(aCap.screenWidth*0.8), 400, (int)(aCap.screenWidth*0.12), 400, 500);
-			    	Thread.sleep(25000);
-		    		temps = wd.findElementsById(eName);
-		    		Thread.sleep(3000);
-		    	}
+		    	eName = UIElements.shoppingCartBtn;
+		        MobileElement temp = aCap.putInCart(wd, eName);
+		        Thread.sleep(3000);
 		    	
 		    	eName = "eu.thalia.app:id/articleTitle";
 				element = wd.findElementById(eName);
 				check = element.getAttribute("name");
 		    	Thread.sleep(4000);
 		    	
-		    	temps.get(0).click();
+		    	temp.click();
 				wd.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		    	Thread.sleep(3000);
 		
@@ -152,6 +142,7 @@ public class ShoppingCartTest {
 				wd.swipe(400, 400, 400, 200, 500);
 		    	Thread.sleep(8000);
 
+				List<MobileElement> temps;
 				wd.getPageSource();
 				wd.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 				temps = wd.findElementsByName(check);
@@ -192,21 +183,16 @@ public class ShoppingCartTest {
 		    	element.click();
 		    	Thread.sleep(3000);
 		    	
-		    	wd.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-		    	eName = "eu.thalia.app:id/shoppingCartBtn";
-		    	List<MobileElement> temps = wd.findElementsById(eName);
-		    	while (temps.size() == 0){
-					wd.swipe((int)(aCap.screenWidth*0.8), 400, (int)(aCap.screenWidth*0.12), 400, 500);
-			    	Thread.sleep(25000);
-		    		temps = wd.findElementsById(eName);
-		    		Thread.sleep(3000);
-		    	}
+		    	eName = UIElements.shoppingCartBtn;
+		        MobileElement temp = aCap.putInCart(wd, eName);
+		        Thread.sleep(3000);
+		        
 		    	eName = "eu.thalia.app:id/articleTitle";
 				element = wd.findElementById(eName);
 				check = element.getAttribute("name");
 		    	Thread.sleep(4000);
 		    	
-		    	temps.get(0).click();
+		    	temp.click();
 				wd.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		    	Thread.sleep(3000);
 		
@@ -232,7 +218,8 @@ public class ShoppingCartTest {
 		    	element = wd.findElementByName(eName);
 		    	element.click();
 		    	Thread.sleep(20000);
-		    	
+				
+		    	List<MobileElement> temps;
 				wd.getPageSource();
 				wd.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 				temps = wd.findElementsByName(check);
@@ -273,21 +260,16 @@ public class ShoppingCartTest {
 		    	element.click();
 		    	Thread.sleep(3000);
 		    	
-		    	wd.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-		    	eName = "eu.thalia.app:id/shoppingCartBtn";
-		    	List<MobileElement> temps = wd.findElementsById(eName);
-		    	while (temps.size() == 0){
-					wd.swipe((int)(aCap.screenWidth*0.8), 400, (int)(aCap.screenWidth*0.12), 400, 500);
-			    	Thread.sleep(25000);
-		    		temps = wd.findElementsById(eName);
-		    		Thread.sleep(3000);
-		    	}
+		    	eName = UIElements.shoppingCartBtn;
+		        MobileElement temp = aCap.putInCart(wd, eName);
+		        Thread.sleep(3000);
+		        
 		    	eName = "eu.thalia.app:id/articleTitle";
 				element = wd.findElementById(eName);
 				check = element.getAttribute("name");
 		    	Thread.sleep(4000);
 		    	
-		    	temps.get(0).click();
+		    	temp.click();
 				wd.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		    	Thread.sleep(3000);
 		
@@ -314,6 +296,7 @@ public class ShoppingCartTest {
 		    	element.click();
 		    	Thread.sleep(20000);
 		    	
+				List<MobileElement> temps;
 				wd.getPageSource();
 				wd.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 				temps = wd.findElementsByName(check);
@@ -355,29 +338,35 @@ public class ShoppingCartTest {
 		    	element.click();
 		    	Thread.sleep(3000);
 		    	
-				wd.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-		    	eName = "eu.thalia.app:id/shoppingCartBtn";
-		    	List<MobileElement> temps = wd.findElementsById(eName);
-		    	while (temps.size() == 0){
-					wd.swipe((int)(aCap.screenWidth*0.8), 400, (int)(aCap.screenWidth*0.12), 400, 500);
-			    	Thread.sleep(25000);
-		    		temps = wd.findElementsById(eName);
-		    		Thread.sleep(3000);
-		    	}
+		    	eName = UIElements.shoppingCartBtn;
+		        MobileElement temp = aCap.putInCart(wd, eName);
+		        Thread.sleep(3000);
+		        
 		    	eName = "eu.thalia.app:id/articleTitle";
 				element = wd.findElementById(eName);
 				check = element.getAttribute("name");
 		    	Thread.sleep(4000);
 		    	
-		    	temps.get(0).click();
+		    	if (aCap.screenHeight == AppiumSetup.motoHeight || aCap.screenHeight == AppiumSetup.galaxyHeight) {
+		    		Thread.sleep(3000);
+		    		wd.swipe(400, 490, 400, 100, 500);
+					Thread.sleep(3000);
+		    	}
+				
+		    	temp.click();
 				wd.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		    	Thread.sleep(3000);
 		    	
-		    	eName = "eu.thalia.app:id/shoppingCartBtn";
+		    	eName = UIElements.shoppingCartBtn;
 				element = wd.findElementById(eName);
 		    	element.click();
 		    	Thread.sleep(3000);
-		
+
+		    	eName = "Entfernen";
+				element = wd.findElementByName(eName);
+		    	element.click();
+		    	Thread.sleep(3000);
+		    	
 		    	eName = UIElements.upName;
 				element = wd.findElementByName(eName);
 		    	element.click();
@@ -391,6 +380,7 @@ public class ShoppingCartTest {
 				wd.swipe(400, 400, 400, 200, 500);
 		    	Thread.sleep(8000);
 
+				List<MobileElement> temps;
 				wd.getPageSource();
 				wd.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 				temps = wd.findElementsByName(check);
