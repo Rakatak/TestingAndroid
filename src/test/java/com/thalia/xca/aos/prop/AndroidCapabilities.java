@@ -4,7 +4,6 @@ import static org.junit.Assert.assertTrue;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.net.URLConnection;
@@ -47,18 +46,13 @@ public class AndroidCapabilities {
     		
     		mandant = "DE";
     		
-    		File currentDir = new File(System.getProperty("user.dir"));
-    		
-    		String mode = System.getProperty("MODE");
             String port = System.getProperty("PORT");
             String integration = System.getProperty("INTEGRATION");
             String localeCode = System.getProperty("MANDANT");
             
             AppiumSetup.versionNr = System.getProperty("VERSION");
 
-    		String jenkinsPath = currentDir + "/xca/thalia/build/outputs/apk/thalia-Origin_-" + mode + ".apk";
-
-    		capabilities.setCapability("app", jenkinsPath);
+    		capabilities.setCapability("app",AppiumSetup.appPath);
             wd = new AndroidDriver<MobileElement>(new URL("http://0.0.0.0:" + port + "/wd/hub"), capabilities);
             wd.manage().timeouts().implicitlyWait(AppiumSetup.timeOutfirst, TimeUnit.SECONDS);
         	Thread.sleep(5000);
